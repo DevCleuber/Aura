@@ -66,3 +66,28 @@ h2 {
   margin-top: 2rem;
   font-size: 1.2rem;
 }
+.quality {
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 6px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.quality-good {
+  background-color: #e6f5ea;
+  color: #2e7d32;
+}
+
+.quality-ok {
+  background-color: #fff6db;
+  color: #a67c00;
+}
+
+.duration {
+  color: #666;
+  font-size: 0.85rem;
+  margin-left: 4px;
+}
+
