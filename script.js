@@ -6,70 +6,64 @@ const historyList = document.getElementById("historyList");
 
 let selectedCycle = null;
 
-calculateBtn.onclick = () => {
+calculateBtn.addEventListener("click", () => {
   const timeStr = sleepInput.value;
+
   if (!timeStr) {
-    alert("Insira um horário de dormir!");
+    alert("Informe um horário para dormir!");
     return;
   }
 
   const [hours, minutes] = timeStr.split(":").map(Number);
   const baseTime = new Date();
-  baseTime.setHours(hours);
-  baseTime.setMinutes(minutes);
-  baseTime.setSeconds(0);
+  baseTime.setHours(hours, minutes, 0, 0);
 
-  const cycles = [];
   cycleList.innerHTML = "";
   selectedCycle = null;
 
   for (let i = 3; i <= 6; i++) {
     const wakeTime = new Date(baseTime.getTime() + i * 90 * 60000);
-    const formatted = wakeTime.toLocaleTimeString([], {
+    const formatted = wakeTime.toLocaleTimeString("pt-BR", {
       hour: "2-digit",
       minute: "2-digit",
     });
 
-    const durationText = `${i * 1.5}h`;
+    const durationText = `${(i * 1.5).toFixed(1)}h`;
     const li = document.createElement("li");
     li.textContent = `Acordar às ${formatted} (${durationText}) — ${
       i >= 5 ? "🟢 Bom" : "🟡 Ok"
     }`;
+
     li.setAttribute("data-time", formatted);
     li.setAttribute("data-duration", durationText);
 
-    li.onclick = () => {
+    li.addEventListener("click", () => {
       document.querySelectorAll("#cycleList li").forEach((el) =>
         el.classList.remove("selected")
       );
       li.classList.add("selected");
+
       selectedCycle = {
         time: formatted,
         duration: durationText,
+        sleep: timeStr,
       };
-    };
+    });
 
     cycleList.appendChild(li);
-    cycles.push(li);
   }
-};
+});
 
-confirmBtn.onclick = () => {
-  const sleepTime = sleepInput.value;
-  const selectedLi = document.querySelector("#cycleList li.selected");
-
-  if (!sleepTime || !selectedLi) {
-    alert("Por favor, selecione um horário de dormir e um ciclo.");
+confirmBtn.addEventListener("click", () => {
+  if (!selectedCycle || !selectedCycle.time || !selectedCycle.sleep) {
+    alert("Selecione um horário de dormir e um ciclo!");
     return;
   }
 
-  const cycleTime = selectedLi.getAttribute("data-time");
-  const duration = selectedLi.getAttribute("data-duration");
-
-  scheduleRelaxNotification(sleepTime);
-  saveNight(sleepTime, cycleTime, duration);
-  alert("Ciclo confirmado e salvo!");
-};
+  scheduleRelaxNotification(selectedCycle.sleep);
+  saveNight(selectedCycle.sleep, selectedCycle.time, selectedCycle.duration);
+  alert("Ciclo salvo com sucesso!");
+});
 
 function saveNight(sleep, wake, duration) {
   const history = JSON.parse(localStorage.getItem("sleepHistory")) || [];
@@ -92,9 +86,7 @@ function updateHistory() {
 function scheduleRelaxNotification(timeStr) {
   const [hours, minutes] = timeStr.split(":").map(Number);
   const relaxTime = new Date();
-  relaxTime.setHours(hours);
-  relaxTime.setMinutes(minutes - 30);
-  relaxTime.setSeconds(0);
+  relaxTime.setHours(hours, minutes - 30, 0, 0);
 
   const now = new Date();
   const delay = relaxTime.getTime() - now.getTime();
@@ -106,5 +98,4 @@ function scheduleRelaxNotification(timeStr) {
   }
 }
 
-// Atualiza histórico ao carregar
 updateHistory();
