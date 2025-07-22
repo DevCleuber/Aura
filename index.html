@@ -1,34 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aura</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-</head>
-<body>
-  <div class="app">
-    <h1>Aura</h1>
-    <label for="sleep-time">Escolha a hora que deseja dormir:</label>
-    <input type="time" id="sleep-time" />
-    <button id="calculate-btn">Calcular ciclos</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Aura</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ffffff"/>
+  </head>
+  <body>
+    <main>
+      <h1>Aura</h1>
+      <p class="desc">Escolha a hora que deseja dormir:</p>
+      <input type="time" id="sleepTime" />
+      <button onclick="calculateCycles()">Calcular ciclos</button>
 
-    <div id="suggestions" class="hidden">
-      <h2>Melhores horários para acordar:</h2>
-      <ul id="cycle-options"></ul>
-    </div>
+      <div id="results" class="hidden">
+        <h2>Horários ideais para acordar:</h2>
+        <ul id="cycleList"></ul>
+      </div>
 
-    <div id="selected-info" class="hidden">
-      <h3 id="selected-cycle"></h3>
-      <button id="confirm-btn">Confirmar este ciclo</button>
-      <p id="relax-reminder"></p>
-    </div>
+      <div id="historySection">
+        <h2>Histórico</h2>
+        <ul id="historyList"></ul>
+      </div>
+    </main>
 
-    <h2>Histórico</h2>
-    <ul id="history-list"></ul>
-  </div>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
