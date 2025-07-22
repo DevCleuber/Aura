@@ -48,3 +48,8 @@ li {
   padding: 10px;
   border-radius: 6px;
 }
+li.selected {
+  background: #dcd9ff;
+  font-weight: bold;
+  border: 2px solid #7d5fff;
+}
