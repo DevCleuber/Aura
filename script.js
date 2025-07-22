@@ -21,7 +21,7 @@ calculateBtn.addEventListener("click", () => {
   cycleList.innerHTML = "";
   selectedCycle = null;
 
-  for (let i = 3; i <= 6; i++) {
+  for (let i = 3; i <= 7; i++) {
     const wakeTime = new Date(baseTime.getTime() + i * 90 * 60000);
     const formatted = wakeTime.toLocaleTimeString("pt-BR", {
       hour: "2-digit",
