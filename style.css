@@ -1,38 +1,68 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f9f9fb;
-  color: #333;
+  background: #f4f4f7;
+  margin: 0;
   padding: 2rem;
-  text-align: center;
+  color: #333;
 }
-input, button {
-  padding: 0.5rem;
-  margin: 1rem 0;
+
+main {
+  max-width: 400px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #663399;
+}
+
+input[type="time"] {
+  width: 100%;
+  padding: 0.6rem;
   font-size: 1rem;
+  margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
+
+button {
+  background-color: #663399;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #552288;
+}
+
 ul {
   list-style: none;
   padding: 0;
 }
+
 li {
-  padding: 0.5rem;
-  margin: 0.3rem;
-  background: #fff;
+  background: white;
   border-radius: 8px;
-  border: 1px solid #eee;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
-li:hover {
-  background: #f0f0ff;
-}
+
 li.selected {
-  background: #dcd9ff;
-  font-weight: bold;
-  border: 2px solid #7d5fff;
+  border-color: #663399;
+  background-color: #ede6f7;
 }
-.hidden {
-  display: none;
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
 }
