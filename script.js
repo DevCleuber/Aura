@@ -88,7 +88,18 @@ function updateHistory() {
 function scheduleRelaxNotification(timeStr) {
   const [hours, minutes] = timeStr.split(":").map(Number);
   const relaxTime = new Date();
-  relaxTime.setHours(hours, minutes - 30, 0, 0);
+  relaxTime.setHours(hours, minutes - 30, 0, 0);  // Configura o alarme para 30 minutos antes
+
+  const now = new Date();
+  const delay = relaxTime.getTime() - now.getTime(); // Calcula a diferença de tempo entre agora e o alarme
+
+  if (delay > 0) {
+    setTimeout(() => {
+      alert("Hora de relaxar! Seu sono começa em breve 💤"); // Alerta
+    }, delay); 
+  }
+}
+
 
   const now = new Date();
   const delay = relaxTime.getTime() - now.getTime();
