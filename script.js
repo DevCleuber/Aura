@@ -29,10 +29,12 @@ calculateBtn.addEventListener("click", () => {
     });
 
     const durationText = `${(i * 1.5).toFixed(1)}h`;
-    const li = document.createElement("li");
-    li.textContent = `Acordar às ${formatted} (${durationText}) — ${
-      i >= 5 ? "🟢 Bom" : "🟡 Ok"
-    }`;
+const quality = i >= 5 ? "Bom" : "Ok";
+const qualityClass = i >= 5 ? "quality-good" : "quality-ok";
+
+const li = document.createElement("li");
+li.innerHTML = `Acordar às ${formatted} <span class="duration">(${durationText})</span> <span class="quality ${qualityClass}">${quality}</span>`;
+
 
     li.setAttribute("data-time", formatted);
     li.setAttribute("data-duration", durationText);
